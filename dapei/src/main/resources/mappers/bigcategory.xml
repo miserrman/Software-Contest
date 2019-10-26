@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.garment.dapei.dao.BigCategoryDao">
+    <insert id="insertCategory" useGeneratedKeys="true" keyProperty="categoryID">
+        INSERT INTO BIGCATEGORY(CATEGORYINFORMATION) VALUES #{categoryInformation}
+    </insert>
+    <delete id="deleteCategory">
+        DELETE FROM BIGCATEGORY WHERE CATEGORYID=#{categoryID}
+    </delete>
+    <update id="updateCategory">
+        UPDATE BIGCATEGORY SET CATEGORYINFORMATION=#{categoryInformation} WHERE CATEGORYID=#{categoryID}
+    </update>
+    <select id="selectAllCategories" resultType="com.garment.dapei.model.BigCategory">
+        SELECT * FROM BIGCATEGORY
+    </select>
+    <select id="selectCategoryByID" resultType="com.garment.dapei.model.BigCategory">
+        SELECT * FROM BIGCATEGORY WHERE CATEGORYID=#{categoryID}
+    </select>
+    <select id="selectCategoryByName" resultType="com.garment.dapei.model.BigCategory">
+        SELECT * FROM BIGCATEGORY WHERE CATEGORYID=#{categoryInformation}
+    </select>
+</mapper>
