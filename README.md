@@ -14,3 +14,7 @@
     @RunWith(SpringRunner.class)
     @SpringBootTest(classes=DapeiApplication.class)
    ```
+### 10月27日后端记录
+#### 数据库需要修改内容
+1. 所用ID字段改为自增
+2. clothes字段除ID其他字段不需要NOT NULL

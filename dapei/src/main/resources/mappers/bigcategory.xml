@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.garment.dapei.dao.BigCategoryDao">
     <insert id="insertCategory" useGeneratedKeys="true" keyProperty="categoryID">
-        INSERT INTO BIGCATEGORY(CATEGORYINFORMATION) VALUES #{categoryInformation}
+        INSERT INTO BIGCATEGORY(CATEGORYINFORMATION) VALUES (#{categoryInformation})
     </insert>
     <delete id="deleteCategory">
         DELETE FROM BIGCATEGORY WHERE CATEGORYID=#{categoryID}
@@ -19,6 +19,6 @@
         SELECT * FROM BIGCATEGORY WHERE CATEGORYID=#{categoryID}
     </select>
     <select id="selectCategoryByName" resultType="com.garment.dapei.model.BigCategory">
-        SELECT * FROM BIGCATEGORY WHERE CATEGORYID=#{categoryInformation}
+        SELECT * FROM BIGCATEGORY WHERE CATEGORYINFORMATION=#{categoryInformation}
     </select>
 </mapper>
