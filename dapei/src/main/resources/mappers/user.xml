@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.garment.dapei.dao.UserDao">
+    <select id="selectAllUsers" resultType="com.garment.dapei.model.User">
+        SELECT * FROM USER;
+    </select>
+
+    <select id="selectUserBySex" resultType="com.garment.dapei.model.User">
+        SELECT * FROM USER WHERE USERSEX=#{userSex};
+    </select>
+
+    <select id="selectUserByBirthday" resultType="com.garment.dapei.model.User">
+        SELECT * FROM USER WHERE USERBIRTHDAY=#{userBirthday};
+    </select>
+
+    <insert id="insertUser" useGeneratedKeys="true" keyProperty="userID">
+        INSERT INTO COMMENT(USERNAME,USERSEX,USERBIRTHDAY,USERPHONE) VALUES (#{userName},#{userSex},#{userBirthday},#{userPhone});
+    </insert>
+
+    <delete id="deleteUser">
+        DELETE FROM USER WHERE USERID=#{userID};
+    </delete>
+    <update id="updateUser">
+        UPDATE USER SET USERNAME=#{userName},USERSEX=#{userSex},USERBIRTHDAY=#{userBirthday},USERPHONE=#{userPhone},USERIMAGE=#{userImage},USERHAIRCUT=#{userHaircut},USERSKINCOLOR=#{userSkinColor} WHERE USERID=#{userID};
+    </update>
+
+
+
+
+</mapper>

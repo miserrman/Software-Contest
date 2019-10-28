@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.garment.dapei.dao.OutfitDao">
+    <insert id="insertOutfit" useGeneratedKeys="true" keyProperty="categoryID">
+        INSERT INTO OUTFIT(USERID,CLOTHESID,LIKEFREQUENCY) VALUES (#{userID},#{clothesID},#{likefrequency});
+    </insert>
+    <delete id="deleteOutfit">
+        DELETE FROM OUTFIT WHERE OUTFITID=#{outfitID};
+    </delete>
+    <update id="updateOutfit">
+        UPDATE OUTFIT SET USERID=#{userID},CLOTHESID=#{clothesID},LIKEFREQUENCY=#{likefrequency} WHERE OUTFITID=#{outfitID};
+    </update>
+
+    <select id="selectAllOutfits" resultType="com.garment.dapei.model.OutFit">
+        SELECT * FROM OUTFIT;
+    </select>
+    <select id="selectOutfitByID" resultType="com.garment.dapei.model.OutFit">
+       SELECT * FROM OUTFIT WHERE OUTFITID=#{outfitID};
+    </select>
+
+    <select id="selectOutfitByUserID" resultType="com.garment.dapei.model.OutFit">
+        SELECT * FROM OUTFIT WHERE USERID=#{userID};
+    </select>
+
+    <select id="selectOutfitByClothesID" resultType="com.garment.dapei.model.OutFit">
+        SELECT * FROM OUTFIT WHERE CLOTHESID=#{clothesID};
+    </select>
+
+    <select id="selectOutfitByLikeFrequency" resultType="com.garment.dapei.model.OutFit">
+        SELECT * FROM OUTFIT WHERE LIKEFREQUENCY=#{likefrequency};
+    </select>
+
+</mapper>
