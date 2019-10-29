@@ -18,19 +18,12 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 -- Table structure for big_category
 -- ----------------------------
-DROP TABLE IF EXISTS `big_category`;
-CREATE TABLE `big_category` (
+DROP TABLE IF EXISTS `bigcategory`;
+CREATE TABLE `bigcategory` (
   `categoryid` int(7) NOT NULL,
   `categoryinformation` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`category_id`)
+  PRIMARY KEY (`categoryid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of big_category
--- ----------------------------
-INSERT INTO `big_category` VALUES ('1', 'I like it very much');
-INSERT INTO `big_category` VALUES ('2', 'I hate it');
-INSERT INTO `big_category` VALUES ('3', 'I have no ideas about it');
 
 -- ----------------------------
 -- Table structure for closet
@@ -48,13 +41,6 @@ CREATE TABLE `closet` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of closet
--- ----------------------------
-INSERT INTO `closet` VALUES ('1', '1', '2');
-INSERT INTO `closet` VALUES ('1', '2', '2');
-INSERT INTO `closet` VALUES ('1', '3', '2');
-
--- ----------------------------
 -- Table structure for clothes
 -- ----------------------------
 DROP TABLE IF EXISTS `clothes`;
@@ -68,17 +54,10 @@ CREATE TABLE `clothes` (
   `categoryid` int(7) NOT NULL,
   `imageURL` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `likeability` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  PRIMARY KEY (`clothes_id`),
+  PRIMARY KEY (`clothesid`),
   KEY `clothes_big_category` (`categoryid`),
-  CONSTRAINT `clothes_big_category` FOREIGN KEY (`categoryid`) REFERENCES `big_category` (`categoryid`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `clothes_big_category` FOREIGN KEY (`categoryid`) REFERENCES `bigcategory` (`categoryid`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of clothes
--- ----------------------------
-INSERT INTO `clothes` VALUES ('1', '2', '1', 'blue', 'XXXL', 'spring', '1', null, '22');
-INSERT INTO `clothes` VALUES ('2', '10', '2', 'red', 'XXL', 'autumn', '2', null, '13');
-INSERT INTO `clothes` VALUES ('3', '5', '3', 'green', 'M', 'winter', '3', null, '35');
 
 -- ----------------------------
 -- Table structure for comment
@@ -90,17 +69,11 @@ CREATE TABLE `comment` (
   `userid` int(8) NOT NULL,
   `outfitid` int(5) NOT NULL,
   PRIMARY KEY (`commentid`),
-  KEY `comment_user` (`userid`),
-  KEY `comment_outfit` (`outfitid`),
-  CONSTRAINT `comment_outfit` FOREIGN KEY (`outfitid`) REFERENCES `outfit` (`outfitid`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `comment_user` FOREIGN KEY (`userid`) REFERENCES `user` (`userid`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `commentuser` (`userid`),
+  KEY `commentoutfit` (`outfitid`),
+  CONSTRAINT `commentoutfit` FOREIGN KEY (`outfitid`) REFERENCES `outfit` (`outfitid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `commentuser` FOREIGN KEY (`userid`) REFERENCES `user` (`userid`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of comment
--- ----------------------------
-INSERT INTO `comment` VALUES ('1', '2019-10-28 23:22:50', '1', '1');
-INSERT INTO `comment` VALUES ('2', '2019-10-28 23:23:12', '2', '2');
 
 -- ----------------------------
 -- Table structure for figure
@@ -119,11 +92,6 @@ CREATE TABLE `figure` (
   PRIMARY KEY (`figureid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of figure
--- ----------------------------
-INSERT INTO `figure` VALUES ('1', '2', '2', 'xxxxx.URL', '80', '80', '80', '180', '160');
-INSERT INTO `figure` VALUES ('2', '1', '1', 'blabla.URL', '90', '90', '90', '195', '190');
 
 -- ----------------------------
 -- Table structure for outfit
@@ -135,17 +103,12 @@ CREATE TABLE `outfit` (
   `outfitid` int(7) NOT NULL,
   `likefrequency` int(4) NOT NULL,
   PRIMARY KEY (`outfitid`),
-  KEY `outfit_user` (`userid`),
-  KEY `outfit_clothes` (`clothesid`),
-  CONSTRAINT `outfit_clothes` FOREIGN KEY (`clothesid`) REFERENCES `clothes` (`clothesid`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `outfit_user` FOREIGN KEY (`userid`) REFERENCES `user` (`userid`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `outfituser` (`userid`),
+  KEY `outfitclothes` (`clothesid`),
+  CONSTRAINT `outfitclothes` FOREIGN KEY (`clothesid`) REFERENCES `clothes` (`clothesid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `outfituser` FOREIGN KEY (`userid`) REFERENCES `user` (`userid`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of outfit
--- ----------------------------
-INSERT INTO `outfit` VALUES ('1', '1', '1', '1');
-INSERT INTO `outfit` VALUES ('2', '3', '2', '13');
 
 -- ----------------------------
 -- Table structure for user
@@ -160,13 +123,7 @@ CREATE TABLE `user` (
   `userimage` varchar(255) DEFAULT NULL,
   `userfigureid` int(11) DEFAULT NULL,
   PRIMARY KEY (`userid`),
-  KEY `user_figure` (`userfigureid`),
-  CONSTRAINT `user_figure` FOREIGN KEY (`userfigureid`) REFERENCES `figure` (`figureid`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `userfigure` (`userfigureid`),
+  CONSTRAINT `userfigure` FOREIGN KEY (`userfigureid`) REFERENCES `figure` (`figureid`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of user
--- ----------------------------
-INSERT INTO `user` VALUES ('1', 'rentianhe', '1', '1998-10-20', '18030302973', null, null);
-INSERT INTO `user` VALUES ('2', 'wangzi', '1', '1999-01-01', '13344445555', null, null);
-INSERT INTO `user` VALUES ('3', 'William', '2', '1999-10-22', '18160007000', null, null);

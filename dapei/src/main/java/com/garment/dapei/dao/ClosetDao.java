@@ -5,6 +5,8 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 @Repository
 public interface ClosetDao {
 
@@ -12,5 +14,5 @@ public interface ClosetDao {
 
     void deleteClothFromCloset(@Param("userID")int userID, @Param("clothesID")int clothesID);
 
-    void selectClosetByUser(int userID);
+    List<Closet> selectClosetByUser(int userID);
 }
