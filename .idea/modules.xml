@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/.idea/Software-Contest.iml" filepath="$PROJECT_DIR$/.idea/Software-Contest.iml" />
-=======
-      <module fileurl="file://$PROJECT_DIR$/.idea/SoftwareContest.iml" filepath="$PROJECT_DIR$/.idea/SoftwareContest.iml" />
->>>>>>> ad091faa86c1abd788d13b5cc1d80777e21990f6
     </modules>
   </component>
 </project>

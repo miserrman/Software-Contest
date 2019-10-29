@@ -20,8 +20,8 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `big_category`;
 CREATE TABLE `big_category` (
-  `category_id` int(7) NOT NULL,
-  `category_information` varchar(255) DEFAULT NULL,
+  `categoryid` int(7) NOT NULL,
+  `categoryinformation` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`category_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -37,14 +37,14 @@ INSERT INTO `big_category` VALUES ('3', 'I have no ideas about it');
 -- ----------------------------
 DROP TABLE IF EXISTS `closet`;
 CREATE TABLE `closet` (
-  `closet_id` int(7) NOT NULL,
-  `clothes_id` int(7) NOT NULL,
-  `user_id` int(7) NOT NULL,
-  PRIMARY KEY (`closet_id`,`clothes_id`,`user_id`),
-  KEY `closet_clothes` (`clothes_id`),
-  KEY `closet_user` (`user_id`),
-  CONSTRAINT `closet_clothes` FOREIGN KEY (`clothes_id`) REFERENCES `clothes` (`clothes_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `closet_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+  `closetid` int(7) NOT NULL,
+  `clothesid` int(7) NOT NULL,
+  `userid` int(7) NOT NULL,
+  PRIMARY KEY (`closetid`,`clothesid`,`userid`),
+  KEY `closetclothes` (`clothesid`),
+  KEY `closetuser` (`userid`),
+  CONSTRAINT `closetclothes` FOREIGN KEY (`clothesid`) REFERENCES `clothes` (`clothesid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `closetuser` FOREIGN KEY (`userid`) REFERENCES `user` (`userid`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -59,18 +59,18 @@ INSERT INTO `closet` VALUES ('1', '3', '2');
 -- ----------------------------
 DROP TABLE IF EXISTS `clothes`;
 CREATE TABLE `clothes` (
-  `style_id` int(7) NOT NULL,
-  `wear_frequency` int(5) DEFAULT NULL,
-  `clothes_id` int(7) NOT NULL,
-  `clothes_color` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `clothes_size` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `styleid` int(7) NOT NULL,
+  `wearfrequency` int(5) DEFAULT NULL,
+  `clothesid` int(7) NOT NULL,
+  `clothescolor` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `clothessize` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `season` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `category_id` int(7) NOT NULL,
-  `image_URL` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `categoryid` int(7) NOT NULL,
+  `imageURL` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `likeability` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   PRIMARY KEY (`clothes_id`),
-  KEY `clothes_big_category` (`category_id`),
-  CONSTRAINT `clothes_big_category` FOREIGN KEY (`category_id`) REFERENCES `big_category` (`category_id`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `clothes_big_category` (`categoryid`),
+  CONSTRAINT `clothes_big_category` FOREIGN KEY (`categoryid`) REFERENCES `big_category` (`categoryid`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -85,15 +85,15 @@ INSERT INTO `clothes` VALUES ('3', '5', '3', 'green', 'M', 'winter', '3', null, 
 -- ----------------------------
 DROP TABLE IF EXISTS `comment`;
 CREATE TABLE `comment` (
-  `comment_id` int(7) NOT NULL,
-  `comment_time` datetime NOT NULL,
-  `user_id` int(8) NOT NULL,
-  `outfit_id` int(5) NOT NULL,
-  PRIMARY KEY (`comment_id`),
-  KEY `comment_user` (`user_id`),
-  KEY `comment_outfit` (`outfit_id`),
-  CONSTRAINT `comment_outfit` FOREIGN KEY (`outfit_id`) REFERENCES `outfit` (`outfit_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `comment_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+  `commentid` int(7) NOT NULL,
+  `commenttime` datetime NOT NULL,
+  `userid` int(8) NOT NULL,
+  `outfitid` int(5) NOT NULL,
+  PRIMARY KEY (`commentid`),
+  KEY `comment_user` (`userid`),
+  KEY `comment_outfit` (`outfitid`),
+  CONSTRAINT `comment_outfit` FOREIGN KEY (`outfitid`) REFERENCES `outfit` (`outfitid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `comment_user` FOREIGN KEY (`userid`) REFERENCES `user` (`userid`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -107,16 +107,16 @@ INSERT INTO `comment` VALUES ('2', '2019-10-28 23:23:12', '2', '2');
 -- ----------------------------
 DROP TABLE IF EXISTS `figure`;
 CREATE TABLE `figure` (
-  `figure_id` int(11) NOT NULL auto_increment,
-  `user_haircut` int(2) NOT NULL,
-  `user_skin_color` int(2) NOT NULL,
-  `figure_image` varchar(255) NOT NULL,
-  `chest_circumference` int(255) NOT NULL,
+  `figureid` int(11) NOT NULL auto_increment,
+  `userhaircut` int(2) NOT NULL,
+  `userskin_color` int(2) NOT NULL,
+  `figureimage` varchar(255) NOT NULL,
+  `chestcircumference` int(255) NOT NULL,
   `waistline` int(255) NOT NULL,
   `hipline` int(255) NOT NULL,
   `height` int(255) NOT NULL,
   `weight` int(255) NOT NULL,
-  PRIMARY KEY (`figure_id`)
+  PRIMARY KEY (`figureid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -130,15 +130,15 @@ INSERT INTO `figure` VALUES ('2', '1', '1', 'blabla.URL', '90', '90', '90', '195
 -- ----------------------------
 DROP TABLE IF EXISTS `outfit`;
 CREATE TABLE `outfit` (
-  `user_id` int(7) NOT NULL,
-  `clothes_id` int(7) NOT NULL,
-  `outfit_id` int(7) NOT NULL,
-  `like_frequency` int(4) NOT NULL,
-  PRIMARY KEY (`outfit_id`),
-  KEY `outfit_user` (`user_id`),
-  KEY `outfit_clothes` (`clothes_id`),
-  CONSTRAINT `outfit_clothes` FOREIGN KEY (`clothes_id`) REFERENCES `clothes` (`clothes_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `outfit_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+  `userid` int(7) NOT NULL,
+  `clothesid` int(7) NOT NULL,
+  `outfitid` int(7) NOT NULL,
+  `likefrequency` int(4) NOT NULL,
+  PRIMARY KEY (`outfitid`),
+  KEY `outfit_user` (`userid`),
+  KEY `outfit_clothes` (`clothesid`),
+  CONSTRAINT `outfit_clothes` FOREIGN KEY (`clothesid`) REFERENCES `clothes` (`clothesid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `outfit_user` FOREIGN KEY (`userid`) REFERENCES `user` (`userid`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -152,16 +152,16 @@ INSERT INTO `outfit` VALUES ('2', '3', '2', '13');
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
-  `user_id` int(7) NOT NULL,
-  `user_name` varchar(20) NOT NULL,
-  `user_sex` tinyint(1) NOT NULL,
-  `user_birthday` date DEFAULT NULL,
-  `user_phone` char(11) NOT NULL,
-  `user_image` varchar(255) DEFAULT NULL,
-  `user_figure_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`user_id`),
-  KEY `user_figure` (`user_figure_id`),
-  CONSTRAINT `user_figure` FOREIGN KEY (`user_figure_id`) REFERENCES `figure` (`figure_id`) ON DELETE CASCADE ON UPDATE CASCADE
+  `userid` int(7) NOT NULL,
+  `username` varchar(20) NOT NULL,
+  `usersex` tinyint(1) NOT NULL,
+  `userbirthday` date DEFAULT NULL,
+  `userphone` char(11) NOT NULL,
+  `userimage` varchar(255) DEFAULT NULL,
+  `userfigureid` int(11) DEFAULT NULL,
+  PRIMARY KEY (`userid`),
+  KEY `user_figure` (`userfigureid`),
+  CONSTRAINT `user_figure` FOREIGN KEY (`userfigureid`) REFERENCES `figure` (`figureid`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
