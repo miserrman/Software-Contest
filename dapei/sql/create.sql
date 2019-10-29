@@ -20,7 +20,7 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `bigcategory`;
 CREATE TABLE `bigcategory` (
-  `categoryid` int(7) NOT NULL,
+  `categoryid` int(7) NOT NULL auto_increment,
   `categoryinformation` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`categoryid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -30,7 +30,7 @@ CREATE TABLE `bigcategory` (
 -- ----------------------------
 DROP TABLE IF EXISTS `closet`;
 CREATE TABLE `closet` (
-  `closetid` int(7) NOT NULL,
+  `closetid` int(7) NOT NULL auto_increment,
   `clothesid` int(7) NOT NULL,
   `userid` int(7) NOT NULL,
   PRIMARY KEY (`closetid`,`clothesid`,`userid`),
@@ -45,9 +45,9 @@ CREATE TABLE `closet` (
 -- ----------------------------
 DROP TABLE IF EXISTS `clothes`;
 CREATE TABLE `clothes` (
-  `styleid` int(7) NOT NULL,
+  `styleid` int(7) NOT NULL ,
   `wearfrequency` int(5) DEFAULT NULL,
-  `clothesid` int(7) NOT NULL,
+  `clothesid` int(7) NOT NULL auto_increment,
   `clothescolor` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `clothessize` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `season` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
@@ -64,7 +64,7 @@ CREATE TABLE `clothes` (
 -- ----------------------------
 DROP TABLE IF EXISTS `comment`;
 CREATE TABLE `comment` (
-  `commentid` int(7) NOT NULL,
+  `commentid` int(7) NOT NULL auto_increment,
   `commenttime` datetime NOT NULL,
   `userid` int(8) NOT NULL,
   `outfitid` int(5) NOT NULL,
@@ -100,7 +100,7 @@ DROP TABLE IF EXISTS `outfit`;
 CREATE TABLE `outfit` (
   `userid` int(7) NOT NULL,
   `clothesid` int(7) NOT NULL,
-  `outfitid` int(7) NOT NULL,
+  `outfitid` int(7) NOT NULL auto_increment,
   `likefrequency` int(4) NOT NULL,
   PRIMARY KEY (`outfitid`),
   KEY `outfituser` (`userid`),
@@ -115,7 +115,7 @@ CREATE TABLE `outfit` (
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
-  `userid` int(7) NOT NULL,
+  `userid` int(7) NOT NULL auto_increment,
   `username` varchar(20) NOT NULL,
   `usersex` tinyint(1) NOT NULL,
   `userbirthday` date DEFAULT NULL,
