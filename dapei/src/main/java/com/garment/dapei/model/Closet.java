@@ -8,3 +8,4 @@ public class Closet {
     private int clothesID;
     private int userID;
 }
+

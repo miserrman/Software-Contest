@@ -14,7 +14,9 @@ public class BigCateDaoTest {
         BigCategory bigCategory = new BigCategory();
         bigCategory.setCategoryInformation("music");
         bigCategoryDao.insertCategory(bigCategory);
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!");
         System.out.println(bigCategory.getCategoryID());
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!");
     }
 
     @Test

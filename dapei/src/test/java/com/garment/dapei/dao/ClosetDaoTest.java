@@ -14,8 +14,9 @@ public class ClosetDaoTest {
     @Test
     public void insertTest(){
         Closet closet = new Closet();
-        closet.setClothesID(1);
-        closet.setUserID('2');
         closetDao.insertCloset(closet);
+        closet.getClosetID();
+        closet.setClosetID(1);
+
     }
 }
