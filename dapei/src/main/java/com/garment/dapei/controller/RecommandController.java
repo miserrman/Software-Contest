@@ -35,5 +35,15 @@ public class RecommandController {
 
     }
 
+    /**
+     *  用户查询生成的搭配
+     * @param closetID 搭配ID
+     * @return 图片URL
+     */
+    @GetMapping("/find")
+    public String findCloset(String closetID){
+        return null;
+    }
+
 
 }

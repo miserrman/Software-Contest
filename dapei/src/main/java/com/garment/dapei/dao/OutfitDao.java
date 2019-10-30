@@ -1,9 +1,11 @@
 package com.garment.dapei.dao;
 
 import com.garment.dapei.model.OutFit;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface OutfitDao {
 
     int insertOutfit(OutFit outfit);
