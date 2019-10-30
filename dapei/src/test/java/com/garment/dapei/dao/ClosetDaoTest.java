@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.sql.Timestamp;
+
 @SpringBootTest
 public class ClosetDaoTest {
 
@@ -17,5 +19,7 @@ public class ClosetDaoTest {
         closet.setClothesID(1);
         closet.setUserID(1);
         closetDao.insertCloset(closet);
+        String a = "scdscds";
+        TimeTimestamp.valueOf(a);
     }
 }

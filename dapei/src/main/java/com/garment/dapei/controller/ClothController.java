@@ -58,4 +58,16 @@ public class ClothController {
     public void deleteCloth(String userID, String clothID){
 
     }
+
+    @GetMapping("/category/search")
+    public String searchCloth(String userID, String category){
+        return null;
+    }
+
+    @GetMapping("/category/erase")
+    public void eraseCategory(String userID, String clothID, String category){
+    }
+
+    //@GetMapping("/color/search")
+
 }

@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class RecommandController {
 
     /**
-     *  产生单件衣服与用户衣柜的匹配
+     *  产生多件衣服与用户衣柜的匹配
      * @param userID 用户ID
-     * @param clothID 衣服ID
+     * @param clothID 多件衣服ID列表
      * @return 产生图片的URL
      */
     @GetMapping("/cloth")
@@ -30,6 +30,10 @@ public class RecommandController {
         return null;
     }
 
+    /**
+     *  喜欢穿搭
+     * @param outfitID
+     */
     @GetMapping("/favor")
     public void favorOutfit(String outfitID){
 
