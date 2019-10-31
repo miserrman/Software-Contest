@@ -127,3 +127,25 @@ CREATE TABLE `user` (
   CONSTRAINT `userfigure` FOREIGN KEY (`userfigureid`) REFERENCES `figure` (`figureid`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE `intooutfit` (
+  `clothesid` int(7) NOT NULL,
+  `outfitid` int(7) NOT NULL,
+  PRIMARY KEY (`clothesid`,`outfitid`),
+  KEY `outfitid` (`outfitid`),
+  CONSTRAINT `clothesid` FOREIGN KEY (`clothesid`) REFERENCES `clothes` (`clothesid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `outfitid` FOREIGN KEY (`outfitid`) REFERENCES `outfit` (`outfitid`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `collect` (
+  `collectid` int(7) NOT NULL auto_increment,
+  `userid` int(7) NOT NULL,
+  `outfitid` int(7) NOT NULL,
+  PRIMARY KEY (`collectid`),
+  KEY `userid` (`userid`),
+  KEY `Outfitid2` (`outfitid`),
+  CONSTRAINT `Outfitid2` FOREIGN KEY (`outfitid`) REFERENCES `outfit` (`outfitid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `userid` FOREIGN KEY (`userid`) REFERENCES `user` (`userid`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
