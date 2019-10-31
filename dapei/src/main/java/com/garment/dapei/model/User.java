@@ -12,6 +12,5 @@ public class User {
     private Date userBirthday;
     private String userPhone;
     private String userImage;
-    private int userHaircut;
-    private int userSkinColor;
+    private int userFigureID;
 }

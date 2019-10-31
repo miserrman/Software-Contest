@@ -15,7 +15,7 @@ public interface CommentDao {
 
     Comment selectCommentByTime(Timestamp commentTime);
 
-    Comment selectCommentByUserID(int userID);
+    List<Comment> selectCommentByUserID(int userID);
 
     Comment selectCommentByOutfitID(int outfitID);
 

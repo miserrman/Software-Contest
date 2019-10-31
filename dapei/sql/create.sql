@@ -33,7 +33,8 @@ CREATE TABLE `closet` (
   `closetid` int(7) NOT NULL auto_increment,
   `clothesid` int(7) NOT NULL,
   `userid` int(7) NOT NULL,
-  PRIMARY KEY (`closetid`,`clothesid`,`userid`),
+  PRIMARY KEY (`closetid`),
+  PRIMARY KEY (`clothesid`, `userid`),
   KEY `closetclothes` (`clothesid`),
   KEY `closetuser` (`userid`),
   CONSTRAINT `closetclothes` FOREIGN KEY (`clothesid`) REFERENCES `clothes` (`clothesid`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -45,17 +46,19 @@ CREATE TABLE `closet` (
 -- ----------------------------
 DROP TABLE IF EXISTS `clothes`;
 CREATE TABLE `clothes` (
-  `styleid` int(7) NOT NULL ,
+  `styleid` int(7),
   `wearfrequency` int(5) DEFAULT NULL,
   `clothesid` int(7) NOT NULL auto_increment,
   `clothescolor` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `clothessize` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `season` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `categoryid` int(7) NOT NULL,
+  `categoryid` int(7),
   `imageURL` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `likeability` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `userid` int(7) NOT NULL,
   PRIMARY KEY (`clothesid`),
   KEY `clothes_big_category` (`categoryid`),
+  CONSTRAINT `user_cloth` FOREIGN KEY (`userid`) REFERENCES `user` (`userid`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `clothes_big_category` FOREIGN KEY (`categoryid`) REFERENCES `bigcategory` (`categoryid`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -81,14 +84,14 @@ CREATE TABLE `comment` (
 DROP TABLE IF EXISTS `figure`;
 CREATE TABLE `figure` (
   `figureid` int(11) NOT NULL auto_increment,
-  `userhaircut` int(2) NOT NULL,
-  `userskin_color` int(2) NOT NULL,
-  `figureimage` varchar(255) NOT NULL,
-  `chestcircumference` int(255) NOT NULL,
-  `waistline` int(255) NOT NULL,
-  `hipline` int(255) NOT NULL,
-  `height` int(255) NOT NULL,
-  `weight` int(255) NOT NULL,
+  `userhaircut` int(2),
+  `userskincolor` int(2),
+  `figureimage` varchar(255),
+  `chestcircumference` int(255),
+  `waistline` int(255),
+  `hipline` int(255),
+  `height` int(255) NOT,
+  `weight` int(255) NOT,
   PRIMARY KEY (`figureid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

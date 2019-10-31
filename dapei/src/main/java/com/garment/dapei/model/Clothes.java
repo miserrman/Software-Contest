@@ -13,7 +13,7 @@ public class Clothes {
     private int categoryID;
     private String imageURL;
     private String likeAbility;
-
+    private int userID;
 
 }
 

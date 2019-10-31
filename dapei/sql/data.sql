@@ -32,8 +32,8 @@ INSERT INTO `figure` VALUES ('2', '1', '1', 'blabla.URL', '90', '90', '90', '195
 -- Records of closet
 -- ----------------------------
 INSERT INTO `closet` VALUES ('1', '1', '2');
-INSERT INTO `closet` VALUES ('1', '2', '2');
-INSERT INTO `closet` VALUES ('1', '3', '2');
+INSERT INTO `closet` VALUES ('2', '2', '2');
+INSERT INTO `closet` VALUES ('3', '3', '2');
 
 -- ----------------------------
 -- Records of comment

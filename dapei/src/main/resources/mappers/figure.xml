@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.garment.dapei.dao.FigureDao">
+    <insert id="insertUserFigure" useGeneratedKeys="true" keyProperty="figureID">
+        INSERT INTO FIGURE(HEIGHT, WEIGHT) VALUES (#{height},#{weight})
+    </insert>
+    <update id="updateUserFifure">
+        UPDATE FIGURE SET
+        USERHAIRCUT=#{userHairCut},USERSKINCOLOR=#{userSkinColor},
+        FIGUREIMAGE=#{figureImage},CHESTCIRCUMFERENCE=#{chestCircumference},
+        WAISTLINE=#{waistLine},HIPLINE=#{hipLine},
+        HEIGHT=#{height},WEIGHT=#{weight}
+        WHERE FIGUREID=#{figureID}
+    </update>
+    <select id="selectUserFigure" resultType="com.garment.dapei.model.Figure">
+        SELECT * FROM FIGURE WHERE FIGUREID=#{figureID}
+    </select>
+
+</mapper>

@@ -20,7 +20,7 @@
     </select>
 
     <insert id="insertComment" useGeneratedKeys="true" keyProperty="commentID">
-        INSERT INTO COMMENT(COMMENTTIME,USERID,OUTFITID) VALUES (#{commentTime},#{uesrID},#{outfitID});
+        INSERT INTO COMMENT(COMMENTTIME,USERID,OUTFITID) VALUES (#{commentTime},#{userID},#{outfitID});
     </insert>
 
     <delete id="deleteComment">

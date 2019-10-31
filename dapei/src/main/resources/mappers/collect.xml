@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.garment.dapei.dao.CollectDao">
+    <insert id="insertCollect" keyProperty="collectID" useGeneratedKeys="true">
+        INSERT INTO COLLECT(USERID,OUTFITID) VALUES(#{userID},#{outfitID})
+    </insert>
+    <delete id="deleteCollect">
+        DELETE FROM COLLECT WHERE USERID=#{userID} AND OUTFITID=#{outfitID}
+    </delete>
+    <select id="selectUserCollect" resultType="com.garment.dapei.model.Collect">
+        SELECT * FROM COLLECT WHERE USERID=#{userID}
+    </select>
+</mapper>

@@ -1,11 +1,13 @@
 package com.garment.dapei.dao;
 
 import com.garment.dapei.model.Closet;
+import org.hibernate.validator.constraints.EAN;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @SpringBootTest
 public class ClosetDaoTest {
@@ -16,19 +18,21 @@ public class ClosetDaoTest {
     @Test
     public void insertTest(){
         Closet closet = new Closet();
-<<<<<<< HEAD
-=======
         closet.setClothesID(1);
         closet.setUserID(1);
->>>>>>> 68404a2d4990c29cabaf3cfc970eda7c755de36e
         closetDao.insertCloset(closet);
-<<<<<<< HEAD
-        String a = "scdscds";
-        TimeTimestamp.valueOf(a);
-=======
-        closet.getClosetID();
-        closet.setClosetID(1);
+        System.out.println(closet.getClosetID());
+    }
 
->>>>>>> 3af41765c7cd20b1daba133ff17176c5feef82f0
+    @Test
+    public void deleteTest(){
+        closetDao.deleteClothFromCloset(1, 1);
+    }
+
+    @Test
+    public void selectTest(){
+        List<Closet>closetList = closetDao.selectClosetByUser(2);
+        for(Closet closet : closetList)
+            System.out.println(closet.getClothesID());
     }
 }
