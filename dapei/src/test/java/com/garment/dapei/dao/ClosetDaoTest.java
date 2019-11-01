@@ -35,4 +35,8 @@ public class ClosetDaoTest {
         for(Closet closet : closetList)
             System.out.println(closet.getClothesID());
     }
+
+    @Test
+    public void updateTest(){
+    }
 }

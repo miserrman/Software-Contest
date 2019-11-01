@@ -34,4 +34,13 @@ public class ClothesDaoTest {
         List<Clothes>clothesList = clothesDao.selectUserClothes(1);
         System.out.println(clothesList.size());
     }
+
+    @Test
+    public void updateTest(){
+        Clothes clothes = new Clothes();
+        clothes.setClothesID(1);
+        clothes.setUserID(1);
+        clothes.setImageURL("c23");
+        clothesDao.updateClothesInfo(clothes);
+    }
 }

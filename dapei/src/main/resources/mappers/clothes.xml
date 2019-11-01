@@ -11,7 +11,7 @@
     </delete>
     <update id="updateClothesInfo">
         UPDATE CLOTHES
-        SET STYLEID=#{styleID},CLOTHESCOLOR=#{clothesColor},COLTHESSIZE=#{clothesSize},SEASON=#{season}, CATEGORYID=#{categoryID}
+        SET STYLEID=#{styleID},CLOTHESCOLOR=#{clothesColor},CLOTHESSIZE=#{clothesSize},SEASON=#{season}, CATEGORYID=#{categoryID}
         WHERE CLOTHESID=#{clothesID}
     </update>
     <update id="updateClotheswearFrequency">

@@ -90,8 +90,8 @@ CREATE TABLE `figure` (
   `chestcircumference` int(255),
   `waistline` int(255),
   `hipline` int(255),
-  `height` int(255) NOT,
-  `weight` int(255) NOT,
+  `height` int(255),
+  `weight` int(255),
   PRIMARY KEY (`figureid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -102,13 +102,10 @@ CREATE TABLE `figure` (
 DROP TABLE IF EXISTS `outfit`;
 CREATE TABLE `outfit` (
   `userid` int(7) NOT NULL,
-  `clothesid` int(7) NOT NULL,
   `outfitid` int(7) NOT NULL auto_increment,
   `likefrequency` int(4) NOT NULL,
   PRIMARY KEY (`outfitid`),
   KEY `outfituser` (`userid`),
-  KEY `outfitclothes` (`clothesid`),
-  CONSTRAINT `outfitclothes` FOREIGN KEY (`clothesid`) REFERENCES `clothes` (`clothesid`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `outfituser` FOREIGN KEY (`userid`) REFERENCES `user` (`userid`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -119,10 +116,10 @@ CREATE TABLE `outfit` (
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `userid` int(7) NOT NULL auto_increment,
-  `username` varchar(20) NOT NULL,
-  `usersex` tinyint(1) NOT NULL,
+  `username` varchar(20),
+  `usersex` tinyint(1),
   `userbirthday` date DEFAULT NULL,
-  `userphone` char(11) NOT NULL,
+  `userphone` char(11),
   `userimage` varchar(255) DEFAULT NULL,
   `userfigureid` int(11) DEFAULT NULL,
   PRIMARY KEY (`userid`),

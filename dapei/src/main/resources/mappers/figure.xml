@@ -6,10 +6,10 @@
     <insert id="insertUserFigure" useGeneratedKeys="true" keyProperty="figureID">
         INSERT INTO FIGURE(HEIGHT, WEIGHT) VALUES (#{height},#{weight})
     </insert>
-    <update id="updateUserFifure">
+    <update id="updateUserFigure">
         UPDATE FIGURE SET
-        USERHAIRCUT=#{userHairCut},USERSKINCOLOR=#{userSkinColor},
-        FIGUREIMAGE=#{figureImage},CHESTCIRCUMFERENCE=#{chestCircumference},
+        USERHAIRCUT=#{userHaircut},USERSKINCOLOR=#{userSkinColor},
+        FIGUREIMAGE=#{figureImage},CHESTCIRCUMFERENCE=#{chestCircumFerence},
         WAISTLINE=#{waistLine},HIPLINE=#{hipLine},
         HEIGHT=#{height},WEIGHT=#{weight}
         WHERE FIGUREID=#{figureID}

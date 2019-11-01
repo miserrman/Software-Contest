@@ -16,17 +16,18 @@
     </select>
 
     <insert id="insertUser" useGeneratedKeys="true" keyProperty="userID">
-        INSERT INTO COMMENT(USERNAME,USERSEX,USERBIRTHDAY,USERPHONE) VALUES (#{userName},#{userSex},#{userBirthday},#{userPhone});
+        INSERT INTO user (USERNAME,USERSEX,USERBIRTHDAY,USERPHONE) VALUES (#{userName},#{userSex},#{userBirthday},#{userPhone});
     </insert>
 
     <delete id="deleteUser">
         DELETE FROM USER WHERE USERID=#{userID};
     </delete>
     <update id="updateUser">
-        UPDATE USER SET USERNAME=#{userName},USERSEX=#{userSex},USERBIRTHDAY=#{userBirthday},USERPHONE=#{userPhone},USERIMAGE=#{userImage},USERHAIRCUT=#{userHaircut},USERSKINCOLOR=#{userSkinColor} WHERE USERID=#{userID};
+        UPDATE USER SET USERNAME=#{userName},USERSEX=#{userSex},USERBIRTHDAY=#{userBirthday},USERPHONE=#{userPhone},USERIMAGE=#{userImage},USERFIGUREID=#{userFigureID};
     </update>
 
-
-
+    <select id="selectUserByID" resultType="com.garment.dapei.model.User">
+        SELECT * FROM USER WHERE USERID=#{userID}
+    </select>
 
 </mapper>

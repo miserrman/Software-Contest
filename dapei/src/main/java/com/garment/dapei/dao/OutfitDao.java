@@ -18,9 +18,7 @@ public interface OutfitDao {
 
     OutFit selectOutfitByID(int outfitID);
 
-    OutFit selectOutfitByUserID(int userID);
-
-    OutFit selectOutfitByClothesID(int clothesID);
+    List<OutFit> selectOutfitByUserID(int userID);
 
     OutFit selectOutfitByLikeFrequency(int likefrequency);
 

@@ -20,4 +20,5 @@ public interface UserDao {
 
     void updateUser(User user);
 
+    User selectUserByID(int userID);
 }
