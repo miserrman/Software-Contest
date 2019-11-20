@@ -4,7 +4,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-//还要一个表记录衣服和组合产生的联系
 @RestController
 @RequestMapping("/recommand")
 public class RecommandController {

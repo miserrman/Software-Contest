@@ -1,0 +1,42 @@
+<template>
+    <div>
+        <text @click="clickToDis">点击上传图片</text>
+    </div>
+</template>
+<script>
+import request from '@system.request'
+import api from '../config/api.js'
+export default{
+    private:{
+        fileName: ''
+    },
+    initPage(){
+        
+    },
+    clickToDis(){
+        request.upload({
+          url: api.distinguish,
+          files: [
+            {
+              uri: '../Common/logo.png',
+              name: 'file',
+              filename: 'logo.png'
+            }
+          ],
+          data: JSON.stringify({
+                  userID: '1'
+              }
+          ),
+          success: function (data) {
+            console.info('success');
+          },
+          fail: function (data, code) {
+            console.error(``)(data)
+          },
+          complete: function () {
+            console.info('complete')
+          }
+        })
+    }
+}
+</script>

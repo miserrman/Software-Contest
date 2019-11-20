@@ -3,17 +3,26 @@ package com.garment.dapei.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.fasterxml.jackson.databind.jsonschema.JsonSchema;
+import com.garment.dapei.config.SystemPATH;
 import com.garment.dapei.model.Clothes;
+import com.garment.dapei.service.imple.ClosetService;
 import com.garment.dapei.service.imple.ClothService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
 @RequestMapping("/cloth")
 public class ClothController {
+
+    @Autowired
+    ClosetService closetService;
 
     @Autowired
     ClothService clothService;
@@ -30,7 +39,7 @@ public class ClothController {
         String clothID = jsonObject.getString("clothID");
         int uid = Integer.parseInt(userID);
         int cid = Integer.parseInt(clothID);
-        clothService.putInCloset(cid, uid);
+        closetService.putInCloset(cid, uid);
     }
 
     /**
@@ -43,7 +52,7 @@ public class ClothController {
         JSONObject jsonObject = JSON.parseObject(body);
         int userID = Integer.parseInt(jsonObject.getString("userID"));
         int clothID = Integer.parseInt(jsonObject.getString("clothID"));
-        clothService.deleteCloth(clothID, userID);
+        closetService.deleteCloth(clothID, userID);
     }
 
     /**
@@ -55,28 +64,46 @@ public class ClothController {
     public String getUserAllCloth(@RequestBody String body, HttpServletRequest request){
         JSONObject jsonObject = JSON.parseObject(body);
         int userID = Integer.parseInt(jsonObject.getString("userID"));
-        List<Clothes>clothesList = clothService.getCloset(userID);
+        List<Clothes>clothesList = closetService.getCloset(userID);
         return JSON.toJSONString(clothesList);
     }
 
     /**
-     * 识别衣物信息
-     * @param image 衣服图片
-     * @return 衣服信息
+     * 识别衣服图片，前端将图片上传给后端，后端进行识别
+     * @param file 衣服文件
+     * @param body 包含用户ID
+     * @param request
+     * @return 识别后的衣服类
      */
-    @GetMapping("/distinguish")
-    public String distinguishCloth(String image){
-        return null;
+    @PostMapping("/distinguish")
+    public String distinguishCloth(@RequestBody MultipartFile file, @RequestBody String body, HttpServletRequest request ) {
+        String rearPath = SystemPATH.getUserFilePath();
+        JSONObject jsonObject = JSON.parseObject(body);
+        String userID = jsonObject.getString("userID");
+        int uid = Integer.parseInt(userID);
+        String fileName = rearPath + userID + "/clothes" + file.getName();
+        File storedFile = new File(fileName);
+        try {
+            file.transferTo(storedFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Clothes clothes = clothService.distinguish(storedFile, file.getName(), uid);
+        return JSON.toJSONString(clothes);
     }
 
     /**
      * 得到单件衣服的信息
-     * @param clothID 衣服ID
+     * @param body 包含衣服ID${clothID}
      * @return 衣服信息
      */
     @GetMapping("/get/one")
-    public String getClothInfo(String clothID){
-        return null;
+    public String getClothInfo(@RequestBody String body, HttpServletRequest request){
+        JSONObject jsonObject = JSON.parseObject(body);
+        String clothID = jsonObject.getString("clothID");
+        int cid = Integer.parseInt(clothID);
+        Clothes clothes = clothService.getInfo(cid);
+        return JSON.toJSONString(clothes);
     }
 
     /**

@@ -1,5 +1,6 @@
 package com.garment.dapei.service.imple;
 
+import com.garment.dapei.config.SystemPATH;
 import com.garment.dapei.dao.FigureDao;
 import com.garment.dapei.dao.UserDao;
 import com.garment.dapei.model.Figure;
@@ -10,6 +11,7 @@ import com.garment.dapei.vo.AllUserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
 import java.util.Date;
 import java.text.ParseException;
 import java.text.ParsePosition;
@@ -24,6 +26,18 @@ public class UserService implements ILoginService, IFigureInfo {
 
     @Autowired
     FigureDao figureDao;
+
+    public void createUserDict(int userID){
+        String uid = String.valueOf(userID);
+        File file = new File(SystemPATH.getUserFilePath());
+        File clothDic = new File(SystemPATH.getUserFilePath() + "clothes/");
+        File closetDic = new File(SystemPATH.getUserFilePath() + "closet/");
+        if(!file.exists()){
+            file.mkdir();
+        }
+        clothDic.mkdir();
+        closetDic.mkdir();
+    }
 
     @Override
     public AllUserInfo register(String name, String birthday, int sex) {
@@ -44,6 +58,7 @@ public class UserService implements ILoginService, IFigureInfo {
         int figureID = figureDao.insertUserFigure(figure);
         user.setUserFigureID(figureID);
         int userID = userDao.insertUser(user);
+        createUserDict(userID);
         User haveUser = userDao.selectUserByID(userID);
         Figure haveFigure = figureDao.selectUserFigure(figureID);
         AllUserInfo allUserInfo = new AllUserInfo();

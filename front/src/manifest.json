@@ -18,8 +18,11 @@
     "designWidth": 375
   },
   "router": {
-    "entry": "User",
+    "entry": "Distinguish",
     "pages": {
+      "Distinguish": {
+        "component": "distinguish"
+      },
       "Tabbar": {
         "component": "tabbar"
       },
