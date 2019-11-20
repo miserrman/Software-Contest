@@ -1,0 +1,84 @@
+<import name="recommend" src="../Recommend/recommend.ux"></import>
+<import name="closet" src="../Closet/Closet.ux"></import>
+<import name="outfit" src="../Outfit/outfit.ux"></import>
+<import name="info" src="../Info/info.ux"></import>
+ 
+
+<template>
+  <div class="container">
+      <block if="{{flag == 0}}">
+          <recommend></recommend>
+      </block>
+      <block if="{{flag == 1}}">
+          <closet></closet>
+      </block>
+      <block if="{{flag == 2}}">
+          <outfit></outfit>
+      </block>
+      <block if="{{flag == 3}}">
+          <info></info>
+      </block>
+      <tabs>
+          <tab-bar class="footer-container">
+              <block for="{{tabBar.list}}">
+                  <div class="footer-item" onclick="setIndex($idx)">
+                    <block if="{{flag == $idx}}">
+                        <image src="{{tabBar.list[$idx].selected_icon}}" class="footer-item-img"></image>
+                        <text class="tab-text" style="color: {{tabBar.list[$idx].selected_color}}">{{tabBar.list[$idx].name}}</text>
+                    </block>
+                    <block else>
+                        <image src="{{tabBar.list[$idx].icon}}" class="footer-item-img"></image>
+                        <text class="tab-text" style="color: {{tabBar.list[$idx].color}}">{{tabBar.list[$idx].name}}</text>
+                    </block>
+                  </div>
+              </block>
+          </tab-bar>
+      </tabs>
+  </div>
+</template>
+<style src="./tabbar.css">
+</style>
+
+<script>
+export default {
+    private: {
+        flag: 0,
+        tabBar: {
+            list: [
+                {
+                    name: '推荐',
+                    icon: '../Common/logo.png',
+                    color: '#666666',
+                    selected_color: '#555555',
+                    selected_icon: '../Common/logo.png'
+                },
+                {
+                    name: '衣柜',
+                    icon: '../Common/logo.png',
+                    color: '#666666',
+                    selected_color: '#555555',
+                    selected_icon: '../Common/logo.png'
+                },
+                {
+                    name: '穿搭',
+                    icon: '../Common/logo.png',
+                    color: '#666666',
+                    selected_color: '#555555',
+                    selected_icon: '../Common/logo.png'
+                },
+                {
+                    name: '我的',
+                    icon: '../Common/logo.png',
+                    color: '#666666',
+                    selected_color: '#555555',
+                    selected_icon: '../Common/logo.png'
+                }
+            ]
+        }
+    },
+    setIndex: function(pos){
+        this.flag = pos
+    }
+}
+</script>
+

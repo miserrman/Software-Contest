@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface FigureDao {
 
-    void insertUserFigure(Figure figure);
+    int insertUserFigure(Figure figure);
 
     void updateUserFigure(Figure figure);
 

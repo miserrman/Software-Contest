@@ -14,27 +14,40 @@
     { "origin": "*" }
   ],
   "config": {
-    "logLevel": "off"
+    "logLevel": "debug",
+    "designWidth": 375
   },
   "router": {
-    "entry": "Demo",
+    "entry": "User",
     "pages": {
-      "Demo": {
-        "component": "index"
+      "Tabbar": {
+        "component": "tabbar"
       },
-      "DemoDetail": {
-        "component": "index"
+      "Closet": {
+        "component": "closet"
       },
-      "About": {
-        "component": "index"
+      "Outfit": {
+        "component": "outfit"
+      },
+      "Discern": {
+        "component": "discern"
+      },
+      "Recommend": {
+        "component": "recommend"
+      },
+      "Info": {
+        "component": "info"
+      },
+      "User": {
+        "component": "user"
       }
     },
     "widgets": {
-      "CardDemo": {
-        "name": "CardDemo",
-        "description": "快应用卡片展示",
-        "component": "index",
-        "path": "/CardDemo",
+      "Tabbar": {
+        "name": "Tabbar",
+        "description": "底边栏",
+        "component": "tabbar",
+        "path": "/Tabbar",
         "features": []
       }
     }

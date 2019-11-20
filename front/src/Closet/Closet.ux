@@ -1,0 +1,20 @@
+<template>
+    <div>
+        <block>
+            <div>
+                <text>我的衣柜</text>
+            </div>
+        </block>
+        <block>
+            
+        </block>
+    </div>
+</template>
+<script>
+export default{
+    private: {
+        
+    },
+    
+}
+</script>

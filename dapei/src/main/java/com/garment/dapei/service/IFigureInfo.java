@@ -4,7 +4,7 @@ import com.garment.dapei.model.Figure;
 
 public interface IFigureInfo {
 
-    public Figure get(int figureID);
+    public Figure getFigureInfo(int figureID);
 
-    public void input(Figure figure);
+    public void inputFigureInfo(Figure figure);
 }

@@ -1,0 +1,48 @@
+<template>
+    <div>
+        <block>
+            <text>性别</text>
+            <input value="{{birthday}}">
+            <text>生日</text>
+            <input value="{{gender}}">
+            <text @click="register">确定</text>
+        </block>
+    </div>
+</template>
+<style>
+</style>
+<script>
+import $fetch from '@system.fetch'
+import api from '../config/api.js'
+import request from '@system.request'
+export default{
+    private: {
+        birthday: '1999-04-16',
+        gender: '1'
+    },
+    initPage(){
+        console.log(`dcscdsc`)
+    },
+    register(){
+        let that = this
+        $fetch.fetch({
+          url: api.registerUser,
+          data: JSON.stringify({
+            name: "exampleName",
+            gender: that.gender,
+            birthday: that.birthday
+          }),
+          method: "POST",
+          success: function (data) {
+            console.info('success')
+          },
+          fail: function (data, code) {
+            console.log(data)
+          },
+          complete: function () {
+            console.info('complete')
+          }
+        })
+    }
+}
+</script>

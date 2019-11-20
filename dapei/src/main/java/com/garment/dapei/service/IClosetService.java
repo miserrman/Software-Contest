@@ -4,7 +4,7 @@ import com.garment.dapei.model.Clothes;
 
 import java.util.List;
 
-public interface IclosetService {
+public interface IClosetService {
 
     public void putInCloset(int clothID, int userID);
 

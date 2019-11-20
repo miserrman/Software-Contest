@@ -1,6 +1,7 @@
 /**
  * 显示菜单
  */
+import fetch from '@system.fetch'
 function showMenu() {
   const prompt = require('@system.prompt')
   const router = require('@system.router')
@@ -66,7 +67,24 @@ function createShortcut() {
   })
 }
 
+function request(url, data={}){
+  fetch.fetch({
+    url: url,
+    data: data,
+    success: function (data) {
+      console.info('success');
+    },
+    fail: function (data, code) {
+      console.info('fail');
+    },
+    complete: function () {
+      console.info('complete')
+    }
+  })
+}
+
 export default {
   showMenu,
-  createShortcut
+  createShortcut,
+  request
 }

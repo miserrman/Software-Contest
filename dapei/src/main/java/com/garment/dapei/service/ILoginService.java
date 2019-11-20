@@ -1,10 +1,12 @@
 package com.garment.dapei.service;
 
 import com.garment.dapei.model.User;
+import com.garment.dapei.vo.AllUserInfo;
 
 public interface ILoginService {
 
-    public String register(String name, String birthday, int sex);
+    public AllUserInfo register(String name, String birthday, int sex);
 
-    public String update(User user);
+    public void update(User user);
+
 }

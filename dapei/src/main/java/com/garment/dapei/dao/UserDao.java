@@ -10,6 +10,8 @@ import java.util.List;
 public interface UserDao {
     public List<User>selectAllUsers();
 
+    User selectUserByName(String userName);
+
     User selectUserBySex(int sex);
 
     User selectUserByBirthday(Date userBirthda);

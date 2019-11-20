@@ -2,7 +2,7 @@ package com.garment.dapei.model;
 
 import lombok.Data;
 
-import java.sql.Date;
+import java.util.Date;
 
 @Data
 public class User {

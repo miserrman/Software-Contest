@@ -1,0 +1,28 @@
+<template>
+    <div>
+        <block>
+            <div>
+
+            </div>
+        </block>
+        <block>
+            <div>
+
+            </div>
+        </block>
+    </div>
+</template>
+<script>
+export default{
+    private: {
+        frontOutfit: {
+            clothList: [],
+            outfitImage: ''
+        },
+        lastOutfit: {
+            clothList: [],
+            outfitImage: ''
+        }
+    }    
+}
+</script>

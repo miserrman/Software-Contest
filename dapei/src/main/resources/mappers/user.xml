@@ -7,6 +7,10 @@
         SELECT * FROM USER;
     </select>
 
+    <select id="selectUserByName" resultType="com.garment.dapei.model.User">
+        SELECT * FROM USER WHERE USERNAME=#{userName}
+    </select>
+
     <select id="selectUserBySex" resultType="com.garment.dapei.model.User">
         SELECT * FROM USER WHERE USERSEX=#{userSex};
     </select>
