@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -71,17 +72,18 @@ public class ClothController {
     /**
      * 识别衣服图片，前端将图片上传给后端，后端进行识别
      * @param file 衣服文件
-     * @param body 包含用户ID
      * @param request
      * @return 识别后的衣服类
      */
-    @PostMapping("/distinguish")
-    public String distinguishCloth(@RequestBody MultipartFile file, @RequestBody String body, HttpServletRequest request ) {
+    @RequestMapping("/distinguish")
+    @ResponseBody
+    public String distinguishCloth(@RequestParam String body, @RequestParam MultipartFile file, HttpServletRequest request) {
         String rearPath = SystemPATH.getUserFilePath();
         JSONObject jsonObject = JSON.parseObject(body);
         String userID = jsonObject.getString("userID");
         int uid = Integer.parseInt(userID);
-        String fileName = rearPath + userID + "/clothes" + file.getName();
+        String fileName = rearPath + userID + "/clothes/" + file.getName();
+        System.out.println(file.getName());
         File storedFile = new File(fileName);
         try {
             file.transferTo(storedFile);
