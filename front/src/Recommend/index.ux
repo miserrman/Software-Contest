@@ -1,0 +1,231 @@
+<template>
+  <div class="recommend-page">
+    <div class="recommend-today">
+      <div class="recommend-today-1">
+        <div class="weather">
+          <image src="image/rainy.svg"></image>
+          <text>27</text><!--------天气-------->
+        </div>
+        <image src="http://img3.imgtn.bdimg.com/it/u=4156226758,1122649065&fm=26&gp=0.jpg" class="image"></image><!--interface：当日推荐的搭配图-->
+      </div>
+      <div class="recommend-today-2">
+        <input class="like" type="button" value="♥" onclick="routeDetail" />
+        <text id="date-today">{{date}}</text>
+        <textarea  placeholder="记录今天的心情吧" maxlength="200"></textarea>
+      </div>
+    </div>
+
+    <div class="recommend-last">
+      <div class="recommend-today-1">
+        <div class="weather">
+          <image src="image/rainy.svg"></image>
+          <text>27</text><!--------天气-------->
+        </div>
+        <image src="http://img3.imgtn.bdimg.com/it/u=4156226758,1122649065&fm=26&gp=0.jpg" class="image"></image><!--interface：当日推荐的搭配图-->
+      </div>
+      <div class="recommend-today-2">
+        <text id="date-today">{{date}}</text>
+        <text>前一天</text><!--------备注-------->
+      </div>
+    </div>
+    <div class="blank"></div>
+    <div class="recommend-last">
+      <div class="recommend-today-1">
+        <div class="weather">
+          <image src="image/rainy.svg"></image>
+          <text>27</text><!--------天气-------->
+        </div>
+        <image src="http://img3.imgtn.bdimg.com/it/u=4156226758,1122649065&fm=26&gp=0.jpg" class="image"></image><!--interface：当日推荐的搭配图-->
+      </div>
+      <div class="recommend-today-2">
+        <text id="date-today">{{date}}</text>
+        <text>前两天</text><!--------备注-------->
+      </div>
+    </div>
+
+  <div class="nav-bar">
+    <div class="nav-item" onclick="routeDetail">
+      <image src="/Common/image/page-recommend.svg" class="nav-image"></image>
+      <text class="nav-title">今日推荐</text>
+    </div>
+    <div class="nav-item">
+      <image src="/Common/image/page-mywardrobe.svg" class="nav-image"></image>
+      <text class="nav-title">我的衣柜</text>
+    </div>
+    <div class="nav-item">
+      <image src="/Common/image/page-import.svg" class="nav-image"></image>
+      <text class="nav-title">导入单品</text>
+    </div>
+    <div class="nav-item">
+      <image src="/Common/image/page-mycollection.svg" class="nav-image"></image>
+      <text class="nav-title">我的穿搭</text>
+    </div>
+    <div class="nav-item">
+      <image src="/Common/image/page-mysetting.svg" class="nav-image"></image>
+      <text class="nav-title">我的</text>
+    </div>
+  </div>
+  </div>
+
+  
+</template>
+
+<script>
+import router from '@system.router'
+import fetch from '@system.fetch'
+
+export default {
+  // 页面级组件的数据模型，影响传入数据的覆盖机制：private内定义的属性不允许被覆盖
+  data: {
+    recommend:[],
+    date:'',
+    temperature:[],
+    remarks:[]
+  },
+
+  onInit () {
+    console.info(`debug：触发onInit`)
+    //--------日期--------
+    var date = new Date()
+    var y = date.getFullYear()
+    var m = date.getMonth()+1
+    var d = date.getDate()
+    this.date=y+'年'+m+'月'+d+'日'
+    /*
+    //--------天气--------
+    fetch.fetch({
+      url: '',
+      success: function(res) {
+        console('获取天气成功')
+        console.info(res.data)
+      }
+    })
+
+    //--------推荐搭配--------
+    fetch.fetch({
+      url: '',
+      success: function(res) {
+        console('获取搭配成功')
+        console.info(res.data)
+      }
+    })
+
+    //--------备注--------
+    fetch.fetch({
+      url: '',
+      success: function(res) {
+        console('获取备注成功')
+        console.info(res.data)
+      }
+    })
+    */
+  },
+
+  routeDetail () {
+    // 跳转到应用内的某个页面，router用法详见：文档->接口->页面路由
+    router.push ({
+      uri: '/DemoDetail'
+    })
+  }
+}
+
+</script>
+
+<style>
+  @font-face {
+  font-family:FZGYH;
+  src:url("/Common/FZGongYHJW.ttf");
+  }
+  text{
+    font-family:FZGYH;
+  }
+  textarea{
+    font-family:FZGYH;
+    width:100%;
+    border: 1px solid #000000;
+  }
+  .recommend-page {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .recommend-today{
+    background-color: #ffffff;
+    border:5px solid;
+    border-color: #aaaaaa;
+    border-radius:15px;
+    width: 80%;
+    margin-top: 10px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .recommend-today-1{
+    align-items: flex-start;
+    justify-content: center;
+  }
+    .recommend-today-2{
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    align-self: flex-start;
+    padding: 15px;
+  }
+  .weather{
+    flex-direction: column;
+    width: 25%;
+    align-items: center;
+  }
+  .image{
+    width: 70%;
+  }
+  .like {
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+    background-color:#E51C23;
+    font-size: 50px;
+    color: #ffffff;
+    align-self: center;
+  }
+
+  .recommend-last{
+    background-color: #ffffff;
+    border:5px solid;
+    border-color: #aaaaaa;
+    border-radius:15px;
+    width: 37%;
+    margin-top: 50px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .blank{
+    width:6%;
+  }
+
+  .nav-bar{
+    position: fixed;
+    bottom: 0px;
+    background-color: #FDC9C9;
+    width: 100%;
+    height: 120px;
+    justify-content: center;
+  }
+  .nav-item{
+    width:15%;
+    flex-direction: column;
+    margin: 5px;
+    justify-content: center;
+    align-items: center;
+  }
+  .nav-image{
+    width: 70%;
+  }
+  .nav-title{
+    color:#ffffff;
+    font-size: 25px;
+  }
+</style>

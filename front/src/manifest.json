@@ -1,71 +1,87 @@
 {
-  "package": "com.application.demo",
-  "name": "front",
+  "package": "com.csmdd.qwardrobe",
+  "name": "Qwardrobe",
   "versionName": "1.0.0",
   "versionCode": "1",
   "minPlatformVersion": "1020",
   "icon": "/Common/logo.png",
   "features": [
-    { "name": "system.prompt" },
-    { "name": "system.router" },
-    { "name": "system.shortcut" }
+    {
+      "name": "system.prompt"
+    },
+    {
+      "name": "system.router"
+    },
+    {
+      "name": "system.shortcut"
+    },
+    {
+      "name": "system.fetch"
+    }
   ],
   "permissions": [
-    { "origin": "*" }
+    {
+      "origin": "*"
+    }
   ],
   "config": {
-    "logLevel": "debug",
-    "designWidth": 375
+    "designWidth":"750",
+    "logLevel": "debug"
   },
   "router": {
-    "entry": "Distinguish",
+    "entry": "Recommend",
     "pages": {
-      "Distinguish": {
-        "component": "distinguish"
-      },
-      "Tabbar": {
-        "component": "tabbar"
-      },
-      "Closet": {
-        "component": "closet"
-      },
-      "Outfit": {
-        "component": "outfit"
-      },
-      "Discern": {
-        "component": "discern"
-      },
       "Recommend": {
-        "component": "recommend"
+        "component": "index"
       },
-      "Info": {
-        "component": "info"
+      "MyWardrobe": {
+        "component": "index"
       },
-      "User": {
-        "component": "user"
+      "MyCollocation":{
+        "component":"index"
+      },
+      "Import":{
+        "component":"index"
+      },
+      "About": {
+        "component": "index"
       }
     },
     "widgets": {
-      "Tabbar": {
-        "name": "Tabbar",
-        "description": "底边栏",
-        "component": "tabbar",
-        "path": "/Tabbar",
+      "CardDemo": {
+        "name": "CardDemo",
+        "description": "快应用卡片展示",
+        "component": "index",
+        "path": "/CardDemo",
+        "minPlatformVersion": 1032,
+        "targetManufactorys": [
+          "vivo",
+          "xiaomi"
+        ],
         "features": []
       }
     }
   },
   "display": {
-    "titleBarBackgroundColor": "#f2f2f2",
-    "titleBarTextColor": "#414141",
+    "statusBarTextStyle":"light",
+    "titleBarBackgroundColor": "#FDC9C9",
+    "titleBarTextColor": "#FFFFFF",
     "menu": true,
     "pages": {
-      "Demo": {
-        "titleBarText": "示例页",
+      "Recommend": {
+        "titleBarText": "今日推荐",
         "menu": false
       },
-      "DemoDetail": {
-        "titleBarText": "详情页"
+      "MyWardrobe": {
+        "titleBarText": "我的衣柜",
+        "menu": false
+      },
+      "MyCollocation": {
+        "titleBarText": "我的穿搭",
+        "menu": false
+      },
+      "Import": {
+        "titleBarText": "拍照导入"
       },
       "About": {
         "menu": false

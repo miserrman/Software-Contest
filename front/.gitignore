@@ -1,11 +1,3 @@
 node_modules
 build
 dist
-
-.DS_Store
-Thumbs.db
-
-*.log
-*.iml
-.idea/
-.vscode/
